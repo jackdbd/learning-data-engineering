@@ -1,4 +1,4 @@
-from dagster import Definitions, load_assets_from_modules
+from dagster import Definitions, load_assets_from_modules, PipesSubprocessClient
 from .assets import service_requests
 from .resources import database_resource
 
@@ -12,6 +12,7 @@ defs = Definitions(
     jobs=all_jobs,
     resources={
         "database": database_resource,
+        "pipes_subprocess_client": PipesSubprocessClient()
     },
     schedules=all_schedules,
     sensors=all_sensors,

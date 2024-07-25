@@ -32,7 +32,10 @@
   };
 
   # https://devenv.sh/packages/
-  packages = [pkgs.git];
+  packages = [
+    pkgs.aria2 # download tool
+    pkgs.git
+  ];
 
   # https://devenv.sh/scripts/
   scripts.hello.exec = "echo hello from $GREET";

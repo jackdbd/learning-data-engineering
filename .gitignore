@@ -21,5 +21,15 @@ dagster_university/tmp*/
 
 # Language Server Protocol
 .lsp/
+nyc-311/data/outputs/*
+!nyc-311/data/outputs/.gitkeep
+
+nyc-311/data/raw/*
+!nyc-311/data/raw/.gitkeep
+
+nyc-311/data/staging/*
+!nyc-311/data/staging/.gitkeep
+
+nyc-311/tmp*/
 
 # .pre-commit-config.yaml

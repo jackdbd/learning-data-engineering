@@ -8,6 +8,24 @@ Duplicate the `.env.example` file, rename it to `.env`, and fill your environmen
 
 There is nothing to install, since the developer environment is created and managed by devenv.
 
+Create a directory for the raw data:
+
+```sh
+mkdir -p nyc-311/data/raw
+```
+
+Download the raw CSV dataset using a download tool (it's much faster than using Python requests). For example wget...
+
+```sh
+wget -O nyc-311/data/raw/311_service_requests.csv https://data.cityofnewyork.us/api/views/erm2-nwe9/rows.csv?accessType=DOWNLOAD
+```
+
+...or aria2:
+
+```sh
+aria2c --out nyc-311/data/raw/311_service_requests.csv --split 4 https://data.cityofnewyork.us/api/views/erm2-nwe9/rows.csv?accessType=DOWNLOAD
+```
+
 ## Development
 
 Start the Dagster UI web server:
