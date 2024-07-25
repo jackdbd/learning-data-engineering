@@ -7,6 +7,10 @@
 }: {
   # https://devenv.sh/basics/
   # https://devenv.sh/reference/options/
+
+  # This seems NOT to work with Dagster projects. I need to set it in an .env
+  # file for each Dagster project.
+  # env.DUCKDB_DATABASE = "dagster_university/data/staging/data.duckdb";
   env.GREET = "devenv";
 
   # https://devenv.sh/languages/
@@ -16,6 +20,12 @@
     venv.enable = true;
     venv.requirements = ''
       dagster~=1.7
+      dagster-duckdb==0.23.*
+      dagster-webserver~=1.7
+      geopandas~=1.0.1
+      kaleido==0.2.*
+      pandas~=2.2.2
+      plotly~=5.23.0
     '';
     # libraries = [pkgs.cairo];
   };

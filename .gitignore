@@ -1,8 +1,28 @@
+# Clojure formatter
+.clj-kondo/
+
+__pycache__/
+.devcontainer/
 .devenv/
 .direnv/
 
 .devenv.flake.nix
+.env
 
-# devenv.local.nix
+dagster_university/dagster_university.egg-info/
+
+dagster_university/data/outputs/*
+!dagster_university/data/outputs/.gitkeep
+
+dagster_university/data/raw/*
+!dagster_university/data/raw/.gitkeep
+
+dagster_university/data/staging/*
+!dagster_university/data/staging/.gitkeep
+
+dagster_university/tmp*/
+
+# Language Server Protocol
+.lsp/
 
 # .pre-commit-config.yaml
