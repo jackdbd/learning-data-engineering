@@ -1,6 +1,3 @@
-# Clojure formatter
-.clj-kondo/
-
 __pycache__/
 .devcontainer/
 .devenv/
