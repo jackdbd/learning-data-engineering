@@ -4,7 +4,7 @@ This is a [Dagster](https://dagster.io/) project made to accompany Dagster Unive
 
 ## Setup & Installation
 
-Duplicate the `.env.example` file and rename it to `.env`.
+Duplicate the `.env.example` file, rename it to `.env`, and fill your environment variables.
 
 There is nothing to install, since the developer environment is created and managed by devenv.
 
@@ -26,6 +26,14 @@ View the Manhattan map in the browser (you need to materialize it first):
 
 ```sh
 python -m http.server -d dagster_university/data/outputs/ 8888
+```
+
+## Tests
+
+Run all tests found in the `dagster_university_tests` directory:
+
+```sh
+pytest dagster_university_tests
 ```
 
 ## Deploy to Dagster+

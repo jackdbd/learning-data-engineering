@@ -24,6 +24,16 @@ dagster project from-example \
 
 If you want to check the Dagster project developed in that course, enter the `dagster_university` directory and follow [the instructions](./dagster_university/README.md).
 
+### `nyc-311`
+
+The `nyc-311` directory contains the Dagster project for the capstone project of the course [Dagster Essentials](https://courses.dagster.io/courses/dagster-essentials). The project was scaffolded using the following command (do **not** run this command):
+
+```sh
+dagster project scaffold --name nyc-311
+```
+
+If you want to check that Dagster project, enter the `nyc-311` directory and follow [the instructions](./nyc-311/README.md).
+
 ## Reference
 
 - [Dagster Essentials](https://courses.dagster.io/courses/dagster-essentials)

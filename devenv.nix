@@ -26,6 +26,7 @@
       kaleido==0.2.*
       pandas~=2.2.2
       plotly~=5.23.0
+      pytest
     '';
     # libraries = [pkgs.cairo];
   };
