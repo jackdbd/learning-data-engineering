@@ -34,11 +34,18 @@
   # https://devenv.sh/packages/
   packages = [
     pkgs.aria2 # download tool
+    pkgs.csv2parquet # convert CSV files to Apache Parquet
+    pkgs.duckdb
     pkgs.git
+    # pkgs.parquet-tools # various tools for parquet files
+    pkgs.xsv # various tools for CSV files
+    pkgs.visidata # interactive terminal multitool for tabular data
   ];
 
   # https://devenv.sh/scripts/
-  scripts.hello.exec = "echo hello from $GREET";
+  scripts = {
+    hello.exec = "echo hello from $GREET";
+  };
 
   enterShell = ''
     echo Hello ${config.env.GREET}

@@ -47,3 +47,17 @@ pytest nyc_311_tests
 ## Deploy to Dagster+
 
 Check out the [Dagster+ documentation](https://docs.dagster.io/dagster-plus).
+
+## Other
+
+Use [VisiData](https://www.visidata.org/) to inspect a few rows of the original CSV dataset:
+
+```sh
+head -n 100 nyc-311/data/raw/311_service_requests.csv | vd -f csv
+```
+
+Convert the CSV dataset to Parquet:
+
+```sh
+csv2parquet nyc-311/data/raw/311_service_requests.csv nyc-311/data/raw/311_service_requests.parquet
+```
