@@ -1,6 +1,7 @@
 import os
 import shutil
 import pandas as pd
+from datetime import datetime
 from dagster import (
     AssetExecutionContext,
     AssetMaterialization,
@@ -33,7 +34,7 @@ def service_requests_file(
                 description=f"{constants.DATASET_FILE_PATH} found on filesystem, so we mark it as already materialized",
                 metadata={
                     "path": constants.DATASET_FILE_PATH,
-                    "materialization_date": "2024-07-26"
+                    "materialization_date": datetime.today().strftime('%Y-%m-%d')
                 },
                 tags={
                     "file_format": "csv",
@@ -44,7 +45,7 @@ def service_requests_file(
         return MaterializeResult(
             # asset_key=asset_key,
             metadata={
-                "materialization_date": "2024-07-26"
+                "materialization_date": datetime.today().strftime('%Y-%m-%d')
             }
         )
 
@@ -123,3 +124,36 @@ def service_requests_table(
             context.log.info(f"ingest chunk {i} into DuckDB table {table} (chunk_size: {chunk_size} rows)")
             conn.execute(f"CREATE TABLE IF NOT EXISTS {table} AS SELECT * FROM df")
             conn.execute(f"INSERT INTO {table} SELECT * FROM df")
+
+@asset(
+    deps=["service_requests_table"],
+    group_name="outputs",
+)
+def service_requests_stats(
+    context: AssetExecutionContext,
+    database: DuckDBResource
+) -> MaterializeResult:
+    """
+    JSON file created from the DuckDB table of 311 service requests.
+    """
+    query = f"""
+        SELECT
+          agency_name,
+          COUNT(complaint_type) as complaints,
+        FROM {constants.NYC_311_SERVICE_REQUESTS_TABLE}
+        GROUP BY agency_name
+        ORDER BY complaints DESC;
+    """
+    with database.get_connection() as conn:
+        stats = conn.execute(query).fetch_df()
+
+    context.log.info(f"stats\n{stats.to_string()}")
+
+    with open(constants.STATS_FILE_PATH, 'w') as f:
+        f.write(stats.to_json())
+
+    return MaterializeResult(
+        metadata={
+            "materialization_date": datetime.today().strftime('%Y-%m-%d')
+        }
+    )
