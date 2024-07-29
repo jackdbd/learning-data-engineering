@@ -11,4 +11,5 @@ BROOKLYN_GEODATAFRAME_FILE_PATH = "data/staging/brooklyn.geojson"
 MANHATTAN_GEODATAFRAME_FILE_PATH = "data/staging/manhattan.geojson"
 
 BROOKLYN_MAP_FILE_PATH_HTML = "data/outputs/brooklyn_map.html"
+FACET_PLOT_PATH_HTML = "data/outputs/facet_plot.html"
 MANHATTAN_MAP_FILE_PATH_HTML = "data/outputs/manhattan_map.html"

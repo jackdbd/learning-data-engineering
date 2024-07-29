@@ -110,19 +110,53 @@ def service_requests_table(
     }
     
     with database.get_connection() as conn:
-        # Read the CSV file in chunks, selecting only the required columns
-        chunk_iter = pd.read_csv(constants.DATASET_FILE_PATH, usecols=columns.keys(), chunksize=chunk_size)
+        # Read the CSV file in chunks, selecting only the required columns,
+        # skipping the bad lines instead of raising exceptions
+        chunk_iter = pd.read_csv(
+            constants.DATASET_FILE_PATH, usecols=columns.keys(),
+            chunksize=chunk_size, on_bad_lines='skip'
+        )
         
         for i, df in enumerate(chunk_iter):
-            # TODO: to be removed 
-            if i >= 20: break
-
             df.rename(columns=columns, inplace=True)
+
+            if i == 0:
+                conn.execute("DROP TABLE IF EXISTS service_requests")
+
+            # if i >= 100: break
+            # if i >= 2310: break
+
+            df.dropna(inplace=True)
+
+            zips_to_drop = [
+                '02061-0601',
+                '06890-2101',
+                '11725-9030',
+                '11797-1016',
+                '11804-9005',
+                '12212-5368',
+                '19154-3210',
+                '55438-5908',
+                '59901-3413',
+                '61702-3517',
+                '75007-1958',
+                '77094-8911',
+                '90060-0578',
+                '94566-9057',
+                '97076-0477',
+                'DID N',
+                'HARRISBURG',
+                'NJ 07'
+            ]
+            mask = df['incident_zip'].astype(str).fillna('').str.contains('|'.join(zips_to_drop))
+            indexes_to_drop = df[mask].index
+            df.drop(indexes_to_drop, inplace=True)
+
             df['created_date'] = pd.to_datetime(df['created_date'], format='%m/%d/%Y %I:%M:%S %p')
             df['closed_date'] = pd.to_datetime(df['closed_date'], format='%m/%d/%Y %I:%M:%S %p')
-
+            
             context.log.info(f"ingest chunk {i} into DuckDB table {table} (chunk_size: {chunk_size} rows)")
-            conn.execute(f"CREATE TABLE IF NOT EXISTS {table} AS SELECT * FROM df")
+            table_exists = conn.execute(f"CREATE TABLE IF NOT EXISTS {table} AS SELECT * FROM df")
             conn.execute(f"INSERT INTO {table} SELECT * FROM df")
 
 @asset(

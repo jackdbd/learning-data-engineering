@@ -23,6 +23,7 @@
       dagster-duckdb==0.23.*
       dagster-webserver~=1.7
       geopandas~=1.0.1
+      jupyter
       kaleido==0.2.*
       pandas~=2.2.2
       plotly~=5.23.0

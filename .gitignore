@@ -33,3 +33,6 @@ nyc-311/data/staging/*
 nyc-311/tmp*/
 
 # .pre-commit-config.yaml
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/

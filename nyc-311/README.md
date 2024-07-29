@@ -56,8 +56,15 @@ Use [VisiData](https://www.visidata.org/) to inspect a few rows of the original 
 head -n 100 nyc-311/data/raw/311_service_requests.csv | vd -f csv
 ```
 
-Convert the CSV dataset to Parquet:
+Launch the jupyter notebook server:
 
 ```sh
-csv2parquet nyc-311/data/raw/311_service_requests.csv nyc-311/data/raw/311_service_requests.parquet
+jupyter notebook
 ```
+
+## Reference
+
+- [311 Service Requests from 2010 to Present
+ (dataset)](https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9)
+- [311 Service Requests from 2010 to Present
+ (data dictionary)](https://data.cityofnewyork.us/api/views/erm2-nwe9/files/b372b884-f86a-453b-ba16-1fe06ce9d212?download=true&filename=311_ServiceRequest_2010-Present_DataDictionary_Updated_2023.xlsx)
