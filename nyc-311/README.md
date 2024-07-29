@@ -2,6 +2,12 @@
 
 This is a [Dagster](https://dagster.io/) project scaffolded with [`dagster project scaffold`](https://docs.dagster.io/getting-started/create-new-project).
 
+![Complaints in various NYC boroughs](../assets/images/facet-plots.png)
+
+![Complaints in Manhattan](../assets/images/facet-plot-manhattan.png)
+
+![Peak of complaints in Queens](../assets/images/facet-plot-queens-peak.png)
+
 ## Setup & Installation
 
 Duplicate the `.env.example` file, rename it to `.env`, and fill your environment variables.
