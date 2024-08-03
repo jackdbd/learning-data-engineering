@@ -1,0 +1,8 @@
+{:paths ["src"]
+ :deps  {io.github.nextjournal/clerk {:mvn/version "0.16.1016"}
+         meta-csv/meta-csv {:mvn/version "0.1.0"}
+         org.duckdb/duckdb_jdbc {:mvn/version "1.0.0"}
+         seancorfield/next.jdbc {:mvn/version "1.2.659"}
+         techascent/tech.ml.dataset {:mvn/version "7.030"}
+         techascent/tech.ml.dataset.sql {:mvn/version "7.029"}}
+ :aliases {:neil {:project {:name exploratory-data-analysis/exploratory-data-analysis}}}}

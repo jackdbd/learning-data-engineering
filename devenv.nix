@@ -37,6 +37,7 @@
     pkgs.csv2parquet # convert CSV files to Apache Parquet
     pkgs.duckdb
     pkgs.git
+    pkgs.neil # CLI to add common aliases and features to deps.edn-based projects
     # pkgs.parquet-tools # various tools for parquet files
     pkgs.xsv # various tools for CSV files
     pkgs.visidata # interactive terminal multitool for tabular data

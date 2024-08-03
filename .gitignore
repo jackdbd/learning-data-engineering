@@ -1,4 +1,6 @@
 __pycache__/
+.calva/
+.clerk/
 .devcontainer/
 .devenv/
 .direnv/
@@ -33,3 +35,13 @@ nyc-311/data/staging/*
 nyc-311/tmp*/
 
 # .pre-commit-config.yaml
+
+classes/
+# classpath cache
+.cpcache/
+
+.nrepl-port
+*.duckdb
+*.duckdb.wal
+*.jar
+*.log
