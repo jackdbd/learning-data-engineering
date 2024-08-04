@@ -1,6 +1,7 @@
 __pycache__/
 .calva/
 .clerk/
+.clj-kondo/
 .devcontainer/
 .devenv/
 .direnv/

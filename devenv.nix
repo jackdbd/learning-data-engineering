@@ -22,6 +22,8 @@
       dagster~=1.7
       dagster-duckdb==0.23.*
       dagster-webserver~=1.7
+      dbt-core~=1.8.4
+      dbt-duckdb~=1.8.2
       geopandas~=1.0.1
       kaleido==0.2.*
       pandas~=2.2.2
