@@ -1,4 +1,7 @@
 __pycache__/
+.calva/
+.clerk/
+.clj-kondo/
 .devcontainer/
 .devenv/
 .direnv/
@@ -36,3 +39,13 @@ nyc-311/tmp*/
 
 # Jupyter notebook checkpoints
 .ipynb_checkpoints/
+
+classes/
+# classpath cache
+.cpcache/
+
+.nrepl-port
+*.duckdb
+*.duckdb.wal
+*.jar
+*.log

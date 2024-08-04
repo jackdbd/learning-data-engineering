@@ -22,6 +22,8 @@
       dagster~=1.7
       dagster-duckdb==0.23.*
       dagster-webserver~=1.7
+      dbt-core~=1.8.4
+      dbt-duckdb~=1.8.2
       geopandas~=1.0.1
       jupyter
       kaleido==0.2.*
@@ -38,6 +40,7 @@
     pkgs.csv2parquet # convert CSV files to Apache Parquet
     pkgs.duckdb
     pkgs.git
+    pkgs.neil # CLI to add common aliases and features to deps.edn-based projects
     # pkgs.parquet-tools # various tools for parquet files
     pkgs.xsv # various tools for CSV files
     pkgs.visidata # interactive terminal multitool for tabular data

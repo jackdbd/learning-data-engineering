@@ -1,0 +1,7 @@
+transformation:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: '../data/nyc_311.duckdb'
+      threads: 4
