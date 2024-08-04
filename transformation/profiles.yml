@@ -3,5 +3,5 @@ transformation:
   outputs:
     dev:
       type: duckdb
-      path: '../data/nyc_311.duckdb'
+      path: '../data/raw.duckdb'
       threads: 4

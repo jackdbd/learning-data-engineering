@@ -91,8 +91,13 @@ def run(date_start='2010-01-01', date_stop=datetime.datetime.now().strftime('%Y-
         load_info.raise_on_failed_jobs()
         logger.debug(load_info.asstr())
 
-        row_counts = pipeline.last_trace.last_normalize_info
-        logger.debug(f'row_counts {row_counts}')
+        # row_counts = pipeline.last_trace.last_normalize_info
+        # logger.debug(f'row_counts {row_counts}')
+
+        # print human friendly extract information
+        logger.debug(pipeline.last_trace.last_extract_info)
+        # print human friendly normalization information
+        print(pipeline.last_trace.last_normalize_info)
     
     # response = requests.get(url)
     # response.raise_for_status()
@@ -109,7 +114,7 @@ def run(date_start='2010-01-01', date_stop=datetime.datetime.now().strftime('%Y-
     logger.debug(f'view this dlt pipeline as a Streamlit app:')
     logger.debug(f'dlt pipeline {pipeline_name} show')
     logger.debug('try running a query like the following in the SQL editor:')
-    logger.debug(f'SELECT * FROM {dataset_name}.{table_name} LIMIT 3')
+    logger.debug(f'SELECT * FROM {duckdb_schema_name}.{table_name} LIMIT 3')
     return
 
 if __name__ == '__main__':

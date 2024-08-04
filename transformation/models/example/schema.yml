@@ -7,8 +7,8 @@ models:
       The cleaned 311 service requests made by New Yorkers.
     config:
       materialized: table
-      database: nyc_311
-      schema: nyc_311_data
+      database: raw
+      schema: nyc
     columns:
       - name: unique_key
         description: The primary key for this table.
@@ -32,10 +32,8 @@ sources:
       This **dbt source** is a copy of the dataset 
       [311 Service Requests from 2010 to Present](https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9/about_data)
       hosted on [NYC OpenData portal](https://opendata.cityofnewyork.us/).
-    database: nyc_311
-    schema: nyc_311_data
-    # database: raw
-    # schema: nyc
+    database: raw
+    schema: nyc
     meta:
       contains_pii: false
       owner: "@giacomo"
@@ -47,8 +45,7 @@ sources:
       - name: service_requests
         description: >
           The raw 311 service requests made by New Yorkers.
-        identifier: raw_data
-        # identifier: service_requests
+        identifier: service_requests
         loader: dlt
         loaded_at_field: ingested_at
         columns:

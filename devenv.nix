@@ -15,17 +15,18 @@
 
   # https://devenv.sh/languages/
   languages.nix.enable = true;
+  # dlt==0.5.2a2
   languages.python = {
     enable = true;
     venv.enable = true;
     venv.requirements = ''
-      dagster~=1.7
-      dagster-duckdb==0.23.*
-      dagster-webserver~=1.7
+      dagster~=1.7.16
+      dagster-duckdb~=0.23.16
+      dagster-webserver~=1.7.16
       dbt-core~=1.8.4
       dbt-duckdb~=1.8.2
       debugpy
-      dlt==0.5.2a2
+      dlt~=0.5.2
       fire==0.6.*
       geopandas~=1.0.1
       jupyter
@@ -34,6 +35,7 @@
       pandas~=2.2.2
       plotly~=5.23.0
       pytest
+      streamlit
     '';
     # libraries = [pkgs.cairo];
   };
@@ -49,11 +51,6 @@
     pkgs.xsv # various tools for CSV files
     pkgs.visidata # interactive terminal multitool for tabular data
   ];
-
-  # https://devenv.sh/scripts/
-  scripts = {
-    hello.exec = "echo hello from $GREET";
-  };
 
   enterShell = ''
     echo Hello ${config.env.GREET}
@@ -75,6 +72,7 @@
   # https://devenv.sh/processes/
   # processes.ping.exec = "ping example.com";
 
+  # https://devenv.sh/scripts/
   scripts = {
     say-hello.exec = "echo \"Hello from $GREET\"";
   };
