@@ -24,8 +24,12 @@
       dagster-webserver~=1.7
       dbt-core~=1.8.4
       dbt-duckdb~=1.8.2
+      debugpy
+      dlt==0.5.2a2
+      fire==0.6.*
       geopandas~=1.0.1
       jupyter
+      loguru==0.7.*
       kaleido==0.2.*
       pandas~=2.2.2
       plotly~=5.23.0
