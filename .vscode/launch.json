@@ -1,22 +1,6 @@
 {
   "configurations": [
     {
-      "name": "Debug ingestion CLI",
-      "type": "debugpy",
-      "request": "launch",
-      "console": "integratedTerminal",
-      "justMyCode": false,
-      "program": "${workspaceFolder}/ingestion/nyc.py",
-      "args": [
-        "--date-start",
-        "2010-12-01",
-        "--date-stop",
-        "2010-12-31",
-        "--limit",
-        "10000"
-      ]
-    },
-    {
       "name": "Debug current file",
       "type": "debugpy",
       "request": "launch",
@@ -25,7 +9,7 @@
       "program": "${file}"
     },
     {
-      "name": "Attach to debugger",
+      "name": "Attach to debug server",
       "type": "debugpy",
       "request": "attach",
       "connect": { "host": "localhost", "port": 5678 },

@@ -6,9 +6,8 @@ from dagster_duckdb import DuckDBResource
 from ..partitions import monthly_partition, weekly_partition
 from . import constants
 
-@asset(
-    partitions_def=monthly_partition
-)
+
+@asset(partitions_def=monthly_partition)
 def taxi_trips_file(context):
     """
     The raw parquet files for the taxi trips dataset. Sourced from the NYC Open Data portal.
@@ -20,8 +19,11 @@ def taxi_trips_file(context):
         f"https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{month_to_fetch}.parquet"
     )
 
-    with open(constants.TAXI_TRIPS_TEMPLATE_FILE_PATH.format(month_to_fetch), "wb") as output_file:
+    with open(
+        constants.TAXI_TRIPS_TEMPLATE_FILE_PATH.format(month_to_fetch), "wb"
+    ) as output_file:
         output_file.write(raw_trips.content)
+
 
 @asset
 def taxi_zones_file():
@@ -35,13 +37,11 @@ def taxi_zones_file():
     with open(constants.TAXI_ZONES_FILE_PATH, "wb") as output_file:
         output_file.write(zones.content)
 
-@asset(
-    deps=["taxi_trips_file"],
-    partitions_def=monthly_partition
-)
+
+@asset(deps=["taxi_trips_file"], partitions_def=monthly_partition)
 def taxi_trips(context, database: DuckDBResource):
     """
-      The raw taxi trips dataset, loaded into a DuckDB database, partitioned by month.
+    The raw taxi trips dataset, loaded into a DuckDB database, partitioned by month.
     """
     partition_date_str = context.asset_partition_key_for_output()
     month_to_fetch = partition_date_str[:-3]
@@ -66,9 +66,8 @@ def taxi_trips(context, database: DuckDBResource):
     with database.get_connection() as conn:
         conn.execute(query)
 
-@asset(
-    deps=["taxi_zones_file"]
-)
+
+@asset(deps=["taxi_zones_file"])
 def taxi_zones(database: DuckDBResource):
     """
     The taxi zones, loaded into a DuckDB database

@@ -4,23 +4,27 @@ import plotly.express as px
 import plotly.io as pio
 from . import constants
 
+
 class AdhocRequestsConfig(Config):
     filename: str
     borough: str
     start_date: str
     end_date: str
 
+
 @asset(
     deps=["taxi_zones", "taxi_trips"],
 )
 def adhoc_request(config: AdhocRequestsConfig, database: DuckDBResource):
     """
-      The response to an request made in the `requests` directory.
-      See `requests/README.md` for more information.
+    The response to an request made in the `requests` directory.
+    See `requests/README.md` for more information.
     """
 
-    file_path = constants.REQUEST_DESTINATION_TEMPLATE_FILE_PATH.format(config.filename.split('.')[0])
-    
+    file_path = constants.REQUEST_DESTINATION_TEMPLATE_FILE_PATH.format(
+        config.filename.split(".")[0]
+    )
+
     # This query:
     # - Filters out trips that didn’t start in the named borough during the provided date range
     # - Aggregates the data by the day of week and hour the trip started
@@ -53,7 +57,7 @@ def adhoc_request(config: AdhocRequestsConfig, database: DuckDBResource):
 
     with database.get_connection() as conn:
         results = conn.execute(query).fetch_df()
-    
+
     fig = px.bar(
         results,
         x="hour_of_day",
@@ -64,9 +68,8 @@ def adhoc_request(config: AdhocRequestsConfig, database: DuckDBResource):
         labels={
             "hour_of_day": "Hour of Day",
             "day_of_week": "Day of Week",
-            "num_trips": "Number of Trips"
-        }
+            "num_trips": "Number of Trips",
+        },
     )
 
     pio.write_image(fig, file_path)
-

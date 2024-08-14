@@ -12,11 +12,15 @@ There is nothing to install, since the developer environment is created and mana
 
 Start the Dagster UI web server:
 
-```bash
+```sh
+# from this directory
 dagster dev
+
+# from the repository root (using a devenv script)
+dagster-dev
 ```
 
-Open http://localhost:3000 with your browser to see the project.
+Visit http://localhost:3000 to see the Dagster UI.
 
 Data lineage of the `default` [asset group](https://docs.dagster.io/concepts/assets/software-defined-assets#grouping-assets):
 
@@ -33,7 +37,11 @@ python -m http.server -d dagster_university/data/outputs/ 8888
 Run all tests found in the `dagster_university_tests` directory:
 
 ```sh
-pytest dagster_university_tests
+# from this directory
+pytest -v dagster_university_tests
+
+# from the repository root (using a devenv script)
+dagster-test
 ```
 
 ## Deploy to Dagster+
