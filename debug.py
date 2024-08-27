@@ -1,7 +1,12 @@
 import debugpy
 from loguru import logger
 
-# from some_module import some_function
+from dlt_workshop_homework.spacex_pipeline import (
+    extract,
+    extract_loop_and_plot,
+    print_env,
+    run_loop_and_plot,
+)
 
 
 def some_function():
@@ -18,4 +23,7 @@ debugpy.wait_for_client()  # This will block execution until the debugger is att
 logger.debug("Debugger attached.")
 
 # functions that you actually want to debug
-some_function()
+# print_env()
+# extract()
+# extract_loop_and_plot()
+run_loop_and_plot()
